@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import { BrowserRouter as Router, Routes, Route, Navigate} from "react-router-dom";
+import Main from "./pages/Main";
+import Login from './pages/Login';
+import {withRouter} from './components/useRouter';
+import { connect } from "react-redux";
+const App = props =>  {
+  const {logState} = props;
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+    {logState ? (
+<Routes>
+      <Route path="/"  element={<Main/>}/>
+      <Route path="/login" element={<Navigate to="/"/>} />
+    </Routes>
+    ) : (
+      <Routes>
+      <Route path="/"  element={<Navigate to="/login"/>}/>
+      <Route path="/login" element={<Login/>} />
+      </Routes>
+    )}
+    </Router>
   );
-}
-
-export default App;
+};
+const mapStateToProps = (state) => ({
+  logState: state.logged,
+});
+// export default App;
+export default connect(mapStateToProps)(App);
