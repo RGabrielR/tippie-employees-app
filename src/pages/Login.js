@@ -26,7 +26,6 @@ const Login = (props) => {
         valores.password === "Tipie2022"
       ) {
         guardarMensaje("Bien! Redirigiendo...");
-        props.loggedIn();
         setTimeout(() => {
           loggedIn();
           navigate("/", { replace: true });
