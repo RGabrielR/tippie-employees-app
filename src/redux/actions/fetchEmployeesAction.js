@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export const fetchData = () => {
     return (dispatch) => {
-        axios.get('https://employees-data-challenge.herokuapp.com/').then(res => (res.data)).then(data => dispatch(fetchEmployees(data))).catch(err => console.log(err));
+        axios.get('https://employees-data-challenge.herokuapp.com/', headers: { }).then(res => (res.data)).then(data => dispatch(fetchEmployees(data))).catch(err => console.log(err));
 
 }};
 export const sortByName = employees => {
