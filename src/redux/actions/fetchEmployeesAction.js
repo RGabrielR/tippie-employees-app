@@ -3,16 +3,13 @@ import axios from 'axios';
 
 export const fetchData = () => {
     return (dispatch) => {
-      const config = axios.create({
-  baseURL: 'https://employees-data-challenge.herokuapp.com/',
-  timeout: 10000,
-  withCredentials: true,
-  transformRequest: [(data) => JSON.stringify(data.data)],
-  headers: {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json',
-  }
-});
+      const data = '';
+      var config = {
+  method: 'get',
+  url: 'https://employees-data-challenge.herokuapp.com/',
+  headers: { },
+  data : data
+};
         axios(config).then(res => (res.data)).then(data => dispatch(fetchEmployees(data))).catch(err => console.log(err));
 }};
 export const sortByName = employees => {
