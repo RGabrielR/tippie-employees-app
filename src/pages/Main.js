@@ -14,6 +14,7 @@ import NavBar from "../components/NavBar";
 const Main = (props) => {
   useEffect(() => {
     if (!props.employeesData) {
+      console.log("fetch data")
       props.fetchData();
     }
   }, []);
@@ -33,7 +34,7 @@ const Main = (props) => {
         return "";
     }
   };
-  if(!employeesDisplay) return "Cargando..."
+  if(!employeesDisplay) return "Cargando...";
   return (
     <>
       <NavBar />
@@ -73,7 +74,9 @@ const Main = (props) => {
           <tbody>
             {employeesDisplay.map((employee) => {
                 return (
-                  <DisplayEmployees employee={employee} key={employee.key} />
+                  <React.Fragment key={employee.id}>
+                  <DisplayEmployees employee={employee}  />
+                  </React.Fragment>
                 );
               })
             }
