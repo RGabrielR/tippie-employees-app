@@ -1,21 +1,23 @@
 import * as t from '../types';
 import axios from 'axios';
 import employeesData from '../../components/data';
-export const fetchData = async () => {
-   return async (dispatch) => {
-//       const data = '';
-//       const config = {
-//   method: 'get',
-//   url: 'https://employees-data-challenge.herokuapp.com',
-//   headers: { },
-//   data : data
-// };
-// try {
-//    axios(config).then( (res) => (res.data)).then(data => dispatch(fetchEmployees(data)))
-// } catch (error) {
-//   console.log(error)
-// }
- return await  dispatch(fetchEmployees(employeesData))
+
+export const fetchData = () => {
+   return (dispatch) => {
+    const data = '';
+const config = {
+  method: 'get',
+  url: 'https://employees-data-challenge.herokuapp.com/',
+  headers: { },
+  data : data
+};
+ axios(config)
+.then( (response) => {
+  dispatch(fetchEmployees(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
 }};
 export const sortByName = employees => {
   return (dispatch) => {

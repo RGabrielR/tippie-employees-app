@@ -11,11 +11,14 @@ import { withRouter } from "../components/useRouter";
 import { connect } from "react-redux";
 import DisplayEmployees from "../components/DisplayEmployees";
 import NavBar from "../components/NavBar";
+import axios from 'axios';
 const Main = (props) => {
-  console.log("pasa")
   useEffect(async () => {
-      console.log("fetch data")
+    if(!props.employeesDisplay){
+    console.log("pasa")
+    console.log(props)
      await props.fetchData();
+      }
   }, []);
   const { employees } = props.employeesData;
   let employeesDisplay = employees[0];
@@ -33,7 +36,7 @@ const Main = (props) => {
         return "";
     }
   };
-  if(!employeesDisplay) return "Cargando...";
+
   return (
     <>
       <NavBar />
@@ -71,13 +74,18 @@ const Main = (props) => {
             </tr>
           </thead>
           <tbody>
-            {employeesDisplay.map((employee) => {
+            {employeesDisplay ? (employeesDisplay.map((employee) => {
                 return (
                   <React.Fragment key={employee.id}>
-                  <DisplayEmployees employee={employee}  />
+                  <DisplayEmployees employee={employee} key={employee.id} />
                   </React.Fragment>
                 );
               })
+            ) : (
+              <tr>
+              <td> Cargando... </td>
+              </tr>
+            )
             }
           </tbody>
         </table>
@@ -90,12 +98,12 @@ const mapStateToProps = (state) => ({
 });
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchData: () => dispatch(fetchData()),
-    handleError: () => dispatch(handleError()),
-    sortByName: (employees) => dispatch(sortByName(employees)),
-    sortByAge: (employees) => dispatch(sortByAge(employees)),
-    sortBySector: (employees) => dispatch(sortBySector(employees)),
-    sortByEmail: (employees) => dispatch(sortByEmail(employees)),
+    fetchData: () => { dispatch(fetchData())},
+    handleError: () => { dispatch(handleError())},
+    sortByName: (employees) => { dispatch(sortByName(employees))},
+    sortByAge: (employees) => { dispatch(sortByAge(employees))},
+    sortBySector: (employees) => { dispatch(sortBySector(employees))},
+    sortByEmail: (employees) => { dispatch(sortByEmail(employees))}
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Main));

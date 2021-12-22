@@ -3,7 +3,7 @@ const DisplayEmployees = (employeeObj) => {
   const { employee } = employeeObj;
   return (
     <>
-      <tr>
+      <tr >
         <td className="text-center"> {employee.name} </td>
         <td className="text-center"> {employee.age} </td>
         <td className="text-center"> {employee.sector} </td>
