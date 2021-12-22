@@ -15,7 +15,7 @@ export const fetchData = async () => {
 // } catch (error) {
 //   console.log(error)
 // }
-  await  dispatch(fetchEmployees(employeesData))
+ return await  dispatch(fetchEmployees(employeesData))
 }};
 export const sortByName = employees => {
   return (dispatch) => {
