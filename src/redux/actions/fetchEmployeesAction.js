@@ -2,7 +2,7 @@ import * as t from '../types';
 import axios from 'axios';
 import employeesData from '../../components/data';
 export const fetchData = async () => {
-    return (dispatch) => {
+   return async (dispatch) => {
 //       const data = '';
 //       const config = {
 //   method: 'get',
@@ -15,7 +15,7 @@ export const fetchData = async () => {
 // } catch (error) {
 //   console.log(error)
 // }
-    dispatch(fetchEmployees(employeesData))
+  await  dispatch(fetchEmployees(employeesData))
 }};
 export const sortByName = employees => {
   return (dispatch) => {
