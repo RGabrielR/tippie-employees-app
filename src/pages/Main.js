@@ -33,6 +33,7 @@ const Main = (props) => {
         return "";
     }
   };
+  if(!employeesDisplay) return "Cargando..."
   return (
     <>
       <NavBar />
@@ -70,15 +71,12 @@ const Main = (props) => {
             </tr>
           </thead>
           <tbody>
-            {employeesDisplay ? (
-              employeesDisplay.map((employee) => {
+            {employeesDisplay.map((employee) => {
                 return (
                   <DisplayEmployees employee={employee} key={employee.key} />
                 );
               })
-            ) : (
-              <div> cargando... </div>
-            )}
+            }
           </tbody>
         </table>
       </div>
