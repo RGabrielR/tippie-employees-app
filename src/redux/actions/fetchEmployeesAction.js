@@ -6,7 +6,7 @@ export const fetchData = () => {
       const data = '';
       var config = {
   method: 'get',
-  url: '/',
+  url: 'https://employees-data-challenge.herokuapp.com',
   headers: { },
   data : data
 };

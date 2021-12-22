@@ -33,6 +33,7 @@ const Main = (props) => {
         return "";
     }
   };
+  if(!employeesDisplay) return "Cargando..."
   return (
     <>
       <NavBar />
