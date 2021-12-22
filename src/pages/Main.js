@@ -13,9 +13,9 @@ import DisplayEmployees from "../components/DisplayEmployees";
 import NavBar from "../components/NavBar";
 const Main = (props) => {
   console.log("pasa")
-  useEffect(() => {
+  useEffect(async () => {
       console.log("fetch data")
-      props.fetchData();
+     await props.fetchData();
   }, []);
   const { employees } = props.employeesData;
   let employeesDisplay = employees[0];
